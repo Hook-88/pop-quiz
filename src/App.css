@@ -1,0 +1,22 @@
+.landing--page {
+  text-align: center;
+  margin-bottom: 10em;
+  border: 2px solid #1f63bd;
+  border-radius: 1em;
+  padding: 0 2em 1em 2em;
+}
+
+.button--normal { 
+  background-color: #1a4884;
+  color: inherit;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+  cursor: pointer;
+  padding: .5em 1.5em;
+}
+
+.button--normal:hover {
+  background-color: #152a47;
+  color: #a7a9b1
+}
