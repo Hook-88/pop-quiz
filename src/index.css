@@ -1,0 +1,13 @@
+*, 
+*::after, 
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #0f0f0f;
+  color: #d6d8e0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
