@@ -1,4 +1,5 @@
 import React from "react"
+import Button from "./Button"
 
 export default function LandingPage() {
 
@@ -6,7 +7,7 @@ export default function LandingPage() {
     <section className="card landing--page">
       <h1>Paulny's Pop quiz</h1>
       <p>A short quiz of five multiple choice questions</p>
-      <button className="button--normal">Start the Quiz</button>
+      <Button className="danger">Start the quiz</Button>
     </section>
   )
   
