@@ -55,8 +55,6 @@ export default function Quiz() {
     }
   }
 
-  console.log(userInput)
-
   return (
     data[0] ?
       <QuizContext.Provider 
@@ -74,16 +72,23 @@ export default function Quiz() {
               <Question.Answers />
             </Question>
           ))}
-          
-          {// when user gave alle answers, display check answers button.
-            Object.keys(userInput).length === data.length &&
-            <Button 
-              className={"check--answers--button"}
-            >{!checkAnswers ? "Check Answers" : "Restart Quiz"}</Button>
-          } 
-
-          {checkAnswers && <QuizScore />}
-          
+          <div style={
+            {
+              display: "flex",
+              gap: "1em",
+              alignItems: "center",
+              marginTop: "1.4em",
+              alignSelf: "center"
+            }
+          }>
+            {checkAnswers && <QuizScore />}
+            {// when user gave alle answers, display check answers button.
+              Object.keys(userInput).length === data.length &&
+              <Button 
+                className={"check--answers--button"}
+              >{!checkAnswers ? "Check Answers" : "Restart Quiz"}</Button>
+            } 
+          </div>
         </form>
       </QuizContext.Provider>
 

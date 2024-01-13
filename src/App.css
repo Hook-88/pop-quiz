@@ -24,8 +24,6 @@ span.checked {
 }
 
 button.check--answers--button {
-  align-self: center;
-  margin-top: 1.4em;
   padding: .5em 2em;
   font-size: 1rem;
 }

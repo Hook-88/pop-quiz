@@ -19,6 +19,12 @@ export default function QuizScore() {
     })
 
   return (
-    <p>{`You answered ${correctGivenAnsers.length} of ${data.length} questions correct`}</p>
+    <p
+      style={
+        {
+          margin: "0"
+        }
+      }
+    >{`You answered ${correctGivenAnsers.length} of ${data.length} questions correct`}</p>
   )
 }
