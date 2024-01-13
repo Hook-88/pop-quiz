@@ -9,6 +9,7 @@ const QuizContext = createContext()
 export default function Quiz() {
   const [data, setData] = useState([])
   const [userInput, setUserInput] = useState({})
+  const [checkAnswers, setCheckAnsers] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,14 +43,19 @@ export default function Quiz() {
 
   function checkUserAnswers(event) {
     event.preventDefault()
-
-    
+    setCheckAnsers(true)   
   }
-  console.log(userInput)
+
+
   
   return (
     data[0] ?
-      <QuizContext.Provider value={{onUserInput, userInput}}>
+      <QuizContext.Provider 
+        value={
+          {onUserInput, userInput, checkAnswers}
+        }
+      
+      >
         <form className="quiz--form" onSubmit={checkUserAnswers}>
           {data.map(questionObj => (
             <Question questionData={questionObj} key={questionObj.id}>
@@ -57,7 +63,9 @@ export default function Quiz() {
               <Question.Answers />
             </Question>
           ))}
-          {Object.keys(userInput).length === data.length &&
+          
+          {// when user gave alle answers, display check answers button.
+            Object.keys(userInput).length === data.length &&
             <Button className={"check--answers--button"}>Check Answers</Button>
           } 
           

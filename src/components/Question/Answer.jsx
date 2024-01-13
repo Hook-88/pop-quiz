@@ -4,14 +4,15 @@ import { decode } from "html-entities"
 import { QuizContext } from "../Quiz"
 import { QuestionContext } from "./Question"
 
-export default function Answer({children}) {
+export default function Answer({children, isCorrect}) {
   const {id} = useContext(QuestionContext).questionData
-  const {onUserInput, userInput} = useContext(QuizContext)
+  const {onUserInput, userInput, checkAnswers} = useContext(QuizContext)
 
   const cssSpan = 
     classNames(
       "answer-button",  
-      {"checked": userInput[id] === children}
+      {"checked": userInput[id] === children},
+      {"correct": isCorrect && checkAnswers}
     )
 
   return (

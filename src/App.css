@@ -29,3 +29,7 @@ button.check--answers--button {
   padding: .5em 2em;
   font-size: 1rem;
 }
+
+span.correct {
+  background-color: green;
+}

@@ -11,7 +11,14 @@ export default function QuestionAnswers() {
 
   useEffect(() => {
     setShuffledAnswers(
-      shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
+      shuffleItemInArray().map(item => (
+        {
+          value: item, 
+          id: nanoid(),
+          isCorrect: item === correct_answer
+        }
+      
+      ))
     )
   }, [])
 
@@ -30,7 +37,11 @@ export default function QuestionAnswers() {
   return (
     <div>
       {shuffledAnswers.map(answer => (
-        <Answer key={answer.id}>{answer.value}</Answer>
+        <Answer 
+          key={answer.id} 
+          isCorrect={answer.isCorrect}
+        >{answer.value}
+        </Answer>
       ))}
     </div>
   )
