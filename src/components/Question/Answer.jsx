@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import { QuestionContext } from "./Question"
+import classNames from "classnames"
 
+//TODO make click on span second time posible
 export default function Answer({children}) {
   const {id} = useContext(QuestionContext).questionData
   const [on, setOn] = useState(false)
@@ -9,9 +11,12 @@ export default function Answer({children}) {
     setOn(true)
   }
 
+  const cssSpan = classNames("answer-button")
+
   return (
     <span
       onClick={select}
+      className={cssSpan}
     >
       <input 
         type="radio" 
