@@ -1,14 +1,22 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { nanoid } from "nanoid"
 import { QuestionContext } from "./Question"
 import Answer from "./Answer"
 
+//TODO add useEffect to display answers only once
 export default function QuestionAnswers() {
   const {questionData} = useContext(QuestionContext)
   const {correct_answer, incorrect_answers} = questionData
+  const [shuffledAnswers, setShuffledAnswers] = useState([])
 
-  const shuffledAnswerObjects = 
-    shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
+  // const shuffledAnswerObjects = 
+  //   shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
+
+  useEffect(() => {
+    setShuffledAnswers(
+      shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
+    )
+  }, [])
 
   function shuffleItemInArray() {
     const randomIndex = 
@@ -24,7 +32,7 @@ export default function QuestionAnswers() {
 
   return (
     <div>
-      {shuffledAnswerObjects.map(answer => (
+      {shuffledAnswers.map(answer => (
         <Answer key={answer.id}>{answer.value}</Answer>
       ))}
     </div>
