@@ -1,9 +1,8 @@
-export default function QuizQuestion({children}) {
+export default function Question({children}) {
 
   return (
     <section>
       {children}
     </section>
   )
-  
-}
+} 
