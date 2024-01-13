@@ -1,6 +1,7 @@
-import { useState, useEffect, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 import { nanoid } from "nanoid"
 import Question from "./Question/index"
+import Button from "./Button/Button"
 
 const URL = "https://opentdb.com/api.php?amount=5&type=multiple"
 const QuizContext = createContext()
@@ -38,14 +39,14 @@ export default function Quiz() {
   return (
     data[0] ?
       <QuizContext.Provider value={{onUserInput, userInput}}>
-        <form>
+        <form className="quiz--form">
           {data.map(questionObj => (
             <Question questionData={questionObj} key={questionObj.id}>
               <Question.Title>{questionObj.question}</Question.Title>
               <Question.Answers />
             </Question>
-          ))}
-          {/* TODO add submit button */}
+          ))} 
+          <Button className={"check--answers--button"}>Check Answers</Button>
         </form>
       </QuizContext.Provider> 
     : null

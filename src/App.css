@@ -6,13 +6,24 @@
   padding: 0 2em 1em 2em;
 }
 
+form.quiz--form {
+  display: flex;
+  flex-direction: column;
+}
+
 span.answer-button {
   padding: .5em 1.5em;
   border: 1px solid #fff;
   cursor: pointer;
   user-select: none;
+  display: inline-block;
 }
 
 span.checked {
   background-color: gray;
+}
+
+button.check--answers--button {
+  align-self: flex-end;
+  margin-top: 1.4em;
 }
