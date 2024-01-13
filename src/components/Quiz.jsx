@@ -10,6 +10,7 @@ export default function Quiz() {
   const [data, setData] = useState([])
   const [userInput, setUserInput] = useState({})
   const [checkAnswers, setCheckAnsers] = useState(false)
+  const [restartQuiz, setRestartQuiz] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,7 @@ export default function Quiz() {
     }
 
     fetchData()
-  }, [])
+  }, [restartQuiz])
 
   function onUserInput(event) {
     const {name, value} = event.target.dataset
@@ -43,10 +44,13 @@ export default function Quiz() {
 
   function checkUserAnswers(event) {
     event.preventDefault()
-    setCheckAnsers(true)
-    
-    
-    
+    if (!checkAnswers) {
+      setCheckAnsers(true)
+    } else {
+      setCheckAnsers(false)
+      setRestartQuiz(prevRestartQuiz => !prevRestartQuiz)
+    }
+
   }
 
   return (
