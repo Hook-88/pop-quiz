@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from "react"
 import { nanoid } from "nanoid"
 import Question from "./Question/index"
 import Button from "./Button/Button"
+import QuizScore from "./QuizScore"
 
 const URL = "https://opentdb.com/api.php?amount=5&type=multiple"
 const QuizContext = createContext()
@@ -39,31 +40,33 @@ export default function Quiz() {
         ...prevUserInput,
         [name]: value
       }
+
     })
   }
 
-  function checkUserAnswers(event) {
+  function procesUserAnswers(event) {
     event.preventDefault()
     if (!checkAnswers) {
       setCheckAnsers(true)
     } else {
       setCheckAnsers(false)
+      setUserInput({})
       setRestartQuiz(prevRestartQuiz => !prevRestartQuiz)
     }
-
   }
+
+  console.log(userInput)
 
   return (
     data[0] ?
       <QuizContext.Provider 
         value={
-          {onUserInput, userInput, checkAnswers}
+          {onUserInput, userInput, checkAnswers, data}
         }
       >
         <form 
           className="quiz--form" 
-          onSubmit={checkUserAnswers}
-        
+          onSubmit={procesUserAnswers}
         >
           {data.map(questionObj => (
             <Question questionData={questionObj} key={questionObj.id}>
@@ -78,6 +81,8 @@ export default function Quiz() {
               className={"check--answers--button"}
             >{!checkAnswers ? "Check Answers" : "Restart Quiz"}</Button>
           } 
+
+          {checkAnswers && <QuizScore />}
           
         </form>
       </QuizContext.Provider>
