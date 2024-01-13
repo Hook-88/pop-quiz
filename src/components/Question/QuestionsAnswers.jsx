@@ -9,9 +9,6 @@ export default function QuestionAnswers() {
   const {correct_answer, incorrect_answers} = questionData
   const [shuffledAnswers, setShuffledAnswers] = useState([])
 
-  // const shuffledAnswerObjects = 
-  //   shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
-
   useEffect(() => {
     setShuffledAnswers(
       shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
