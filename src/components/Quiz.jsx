@@ -43,7 +43,10 @@ export default function Quiz() {
 
   function checkUserAnswers(event) {
     event.preventDefault()
-    setCheckAnsers(true)   
+    setCheckAnsers(true)
+    
+    
+    
   }
 
   return (
@@ -52,11 +55,10 @@ export default function Quiz() {
         value={
           {onUserInput, userInput, checkAnswers}
         }
-      
       >
         <form 
           className="quiz--form" 
-          onSubmit={!checkAnswers ? checkUserAnswers : () => {}}
+          onSubmit={checkUserAnswers}
         
         >
           {data.map(questionObj => (
