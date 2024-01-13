@@ -7,7 +7,7 @@ export default function QuestionAnswers() {
   const {questionData} = useContext(QuestionContext)
   const {correct_answer, incorrect_answers} = questionData
 
-  const shuffledAnswerObject = 
+  const shuffledAnswerObjects = 
     shuffleItemInArray().map(item => ({value: item, id: nanoid()}))
 
   function shuffleItemInArray() {
@@ -24,7 +24,9 @@ export default function QuestionAnswers() {
 
   return (
     <div>
-      <Answer />
+      {shuffledAnswerObjects.map(answer => (
+        <Answer key={answer.id}>{answer.value}</Answer>
+      ))}
     </div>
   )
 }
