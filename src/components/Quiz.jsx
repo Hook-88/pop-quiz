@@ -21,19 +21,16 @@ export default function Quiz() {
 
     fetchData()
   }, [])
-
-  console.log(data)
   
   return (
     data[0] ? 
       <form>
-        <Question>
-          <Question.Title>{data[0].question}</Question.Title>
-          <Question.Answers 
-            incorrectAnswers={data[0].incorrect_answers}
-            correctAnswer={data[0].correct_answer} 
-          />
-        </Question>
+        {data.map(questionObj => (
+          <Question questionData={questionObj} key={questionObj.id}>
+            <Question.Title>{questionObj.question}</Question.Title>
+            <Question.Answers />
+          </Question>
+        ))}
       </form>
     : null
   )

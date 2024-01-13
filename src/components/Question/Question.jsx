@@ -1,8 +1,16 @@
-export default function Question({children}) {
+import { createContext } from "react"
+
+const QuestionContext = createContext()
+
+export default function Question({children, questionData}) {
 
   return (
-    <section>
-      {children}
-    </section>
+    <QuestionContext.Provider value={{questionData}}>
+      <section>
+        {children}
+      </section>
+    </QuestionContext.Provider>
   )
-} 
+}
+
+export {QuestionContext}
