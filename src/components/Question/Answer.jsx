@@ -1,7 +1,8 @@
-import { useContext, useState } from "react"
-import { QuestionContext } from "./Question"
-import { QuizContext } from "../Quiz"
+import { useContext } from "react"
 import classNames from "classnames"
+import { decode } from "html-entities"
+import { QuizContext } from "../Quiz"
+import { QuestionContext } from "./Question"
 
 export default function Answer({children}) {
   const {id} = useContext(QuestionContext).questionData
@@ -20,7 +21,7 @@ export default function Answer({children}) {
       data-name={id}
       data-value={children}
     >
-      {children}
+      {decode(children)}
     </span>
   )
 }
