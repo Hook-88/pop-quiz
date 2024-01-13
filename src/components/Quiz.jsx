@@ -16,7 +16,11 @@ export default function Quiz() {
         const response = await fetch(URL)
         const result = await response.json()
         //add id to question obj
-        setData(result.results.map(result => ({...result, id: nanoid()})))
+        setData(
+          result.results[0] ?
+          result.results.map(result => ({...result, id: nanoid()}))
+          : []
+        )
       } catch (error) {
         console.log(error)
       }
@@ -35,18 +39,28 @@ export default function Quiz() {
       }
     })
   }
+
+  function checkUserAnswers(event) {
+    event.preventDefault()
+
+    
+  }
+  console.log(userInput)
   
   return (
     data[0] ?
       <QuizContext.Provider value={{onUserInput, userInput}}>
-        <form className="quiz--form">
+        <form className="quiz--form" onSubmit={checkUserAnswers}>
           {data.map(questionObj => (
             <Question questionData={questionObj} key={questionObj.id}>
               <Question.Title>{questionObj.question}</Question.Title>
               <Question.Answers />
             </Question>
-          ))} 
-          <Button className={"check--answers--button"}>Check Answers</Button>
+          ))}
+          {Object.keys(userInput).length === data.length &&
+            <Button className={"check--answers--button"}>Check Answers</Button>
+          } 
+          
         </form>
       </QuizContext.Provider> 
     : null
