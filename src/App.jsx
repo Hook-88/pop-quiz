@@ -1,5 +1,6 @@
 import {useState, createContext} from "react"
 import LandingPage from "./components/LandingPage"
+import Quiz from "./components/Quiz"
 import "./App.css"
 
 const QuizContext = createContext()
@@ -15,7 +16,7 @@ function App() {
   return (
     <div>
       <QuizContext.Provider value={{quizStarted, startQuiz}}>
-      {!quizStarted ? <LandingPage /> : "quiz"}
+      {!quizStarted ? <LandingPage /> : <Quiz />}
       </QuizContext.Provider>
     </div>
   )
