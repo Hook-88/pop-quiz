@@ -46,8 +46,6 @@ export default function Quiz() {
     setCheckAnsers(true)   
   }
 
-
-  
   return (
     data[0] ?
       <QuizContext.Provider 
@@ -56,7 +54,11 @@ export default function Quiz() {
         }
       
       >
-        <form className="quiz--form" onSubmit={checkUserAnswers}>
+        <form 
+          className="quiz--form" 
+          onSubmit={!checkAnswers ? checkUserAnswers : () => {}}
+        
+        >
           {data.map(questionObj => (
             <Question questionData={questionObj} key={questionObj.id}>
               <Question.Title>{questionObj.question}</Question.Title>
@@ -66,11 +68,14 @@ export default function Quiz() {
           
           {// when user gave alle answers, display check answers button.
             Object.keys(userInput).length === data.length &&
-            <Button className={"check--answers--button"}>Check Answers</Button>
+            <Button 
+              className={"check--answers--button"}
+            >{!checkAnswers ? "Check Answers" : "Restart Quiz"}</Button>
           } 
           
         </form>
-      </QuizContext.Provider> 
+      </QuizContext.Provider>
+
     : null
   )
 }
