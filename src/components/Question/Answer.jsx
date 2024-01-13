@@ -3,6 +3,7 @@ import { QuestionContext } from "./Question"
 import classNames from "classnames"
 
 //TODO make click on span second time posible
+//Idea: create state for question array per quesion obj en checked prop
 export default function Answer({children}) {
   const {id} = useContext(QuestionContext).questionData
   const [on, setOn] = useState(false)
