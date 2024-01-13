@@ -23,9 +23,16 @@ span.checked {
   background-color: gray;
 }
 
+div.player--score-container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin-top: 1.4em;
+  align-self: center;
+}
+
 button.check--answers--button {
   padding: .5em 2em;
-  font-size: 1rem;
 }
 
 span.correct {

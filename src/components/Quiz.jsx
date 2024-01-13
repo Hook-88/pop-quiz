@@ -72,15 +72,7 @@ export default function Quiz() {
               <Question.Answers />
             </Question>
           ))}
-          <div style={
-            {
-              display: "flex",
-              gap: "1em",
-              alignItems: "center",
-              marginTop: "1.4em",
-              alignSelf: "center"
-            }
-          }>
+          <div className="player--score-container">
             {checkAnswers && <QuizScore />}
             {// when user gave alle answers, display check answers button.
               Object.keys(userInput).length === data.length &&
@@ -91,7 +83,6 @@ export default function Quiz() {
           </div>
         </form>
       </QuizContext.Provider>
-
     : null
   )
 }

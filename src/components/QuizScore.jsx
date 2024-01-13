@@ -6,6 +6,7 @@ export default function QuizScore() {
   //convert object in array of object
   const userInputArray = 
     Object.entries(userInput).map(([key, value]) => {
+      
       return {
         id: key,
         value
@@ -14,17 +15,15 @@ export default function QuizScore() {
 
   const correctGivenAnsers = 
     userInputArray.filter(item => {
+      // get data obj with correct ansers
       const questionDataObj = data.find(question => question.id === item.id)
+
       return item.value === questionDataObj.correct_answer
     })
 
   return (
-    <p
-      style={
-        {
-          margin: "0"
-        }
-      }
+    <p 
+      style={{ margin: "0"}}
     >{`You answered ${correctGivenAnsers.length} of ${data.length} questions correct`}</p>
   )
 }
