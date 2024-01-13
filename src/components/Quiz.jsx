@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext } from "react"
 import { nanoid } from "nanoid"
 import Question from "./Question/index"
 
 const URL = "https://opentdb.com/api.php?amount=5&type=multiple"
+const QuizContext = createContext()
 
 export default function Quiz() {
   const [data, setData] = useState([])
+  const [userInput, setUserInput] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,20 +23,35 @@ export default function Quiz() {
 
     fetchData()
   }, [])
+
+  function onUserInput(event) {
+    const {name, value} = event.target.dataset
+    
+    setUserInput(prevUserInput => {
+      return {
+        ...prevUserInput,
+        [name]: value
+      }
+    })
+  }
   
   return (
-    data[0] ? 
-      <form>
-        {data.map(questionObj => (
-          <Question questionData={questionObj} key={questionObj.id}>
-            <Question.Title>{questionObj.question}</Question.Title>
-            <Question.Answers />
-          </Question>
-        ))}
-      </form>
+    data[0] ?
+      <QuizContext.Provider value={{onUserInput, userInput}}>
+        <form>
+          {data.map(questionObj => (
+            <Question questionData={questionObj} key={questionObj.id}>
+              <Question.Title>{questionObj.question}</Question.Title>
+              <Question.Answers />
+            </Question>
+          ))}
+        </form>
+      </QuizContext.Provider> 
     : null
   )
 }
+
+export { QuizContext }
 
 // category: "Celebrities"
 // correct_answer: "2035"
