@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { nanoid } from "nanoid"
 import { QuestionContext } from "./Question"
+import Answer from "./Answer"
 
 export default function QuestionAnswers() {
   const {questionData} = useContext(QuestionContext)
@@ -23,7 +24,7 @@ export default function QuestionAnswers() {
 
   return (
     <div>
-      answers here
+      <Answer />
     </div>
   )
 }
